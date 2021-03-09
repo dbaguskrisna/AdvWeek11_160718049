@@ -15,7 +15,7 @@ class ListViewModel:ViewModel() {
         val student3 = Student("79-0628631","Miof mela","2015/08/27","1498072491","http://dummyimage.com/100x75.jpg/5fa2dd/ffffff")
 
         studentsLD.value = arrayListOf<Student>(student1,student2,student3)
-        loadingErrorLD.value = true
-        loaadingDoneLD.value = false
+        loadingErrorLD.value = false
+        loaadingDoneLD.value = true
     }
 }

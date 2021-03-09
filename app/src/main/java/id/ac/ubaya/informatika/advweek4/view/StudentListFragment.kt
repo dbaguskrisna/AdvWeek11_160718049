@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_student_list.*
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-class StudentList : Fragment() {
+class StudentListFragment : Fragment() {
     private lateinit var viewModel:ListViewModel
     private val studentListAdapter = StudentListAdapter(arrayListOf())
 
