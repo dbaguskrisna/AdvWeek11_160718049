@@ -37,6 +37,14 @@ class StudentListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = studentListAdapter
 
+        refreshLayout.setOnRefreshListener {
+            recyclerView.visibility = View.GONE
+            textError.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
+
         observeViewModel()
     }
 
@@ -55,11 +63,11 @@ class StudentListFragment : Fragment() {
 
         viewModel.loaadingDoneLD.observe(viewLifecycleOwner, Observer {
             if(it)  {
-                progressBar.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
-            } else {
                 progressBar.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
+            } else {
+                progressBar.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
             }
         })
     }
