@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.RequestQueue
 import id.ac.ubaya.informatika.advweek4.R
+import id.ac.ubaya.informatika.advweek4.util.loadImage
 import id.ac.ubaya.informatika.advweek4.viewmodel.DetailViewModel
 import id.ac.ubaya.informatika.advweek4.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_student_detail.*
 import kotlinx.android.synthetic.main.fragment_student_list.*
+import kotlinx.android.synthetic.main.student_list_item.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +24,7 @@ class StudentDetailFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
     private lateinit var viewModel:DetailViewModel
-
+    var id = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,10 +34,15 @@ class StudentDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+        if(arguments!=null){
+            id = StudentDetailFragmentArgs.fromBundle(requireArguments()).studentID
+            textView.setText(id)
+
+        }
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
+        viewModel.fetch(id.toString())
 
         observeViewModel()
     }
@@ -45,6 +53,7 @@ class StudentDetailFragment : Fragment() {
             textInputStidentName.setText(it.name)
             textInputPhone.setText(it.phone)
             textInputBirthDate.setText(it.bod)
+            imageView2.loadImage(it.photoUrl, progressBar3)
         })
     }
 
