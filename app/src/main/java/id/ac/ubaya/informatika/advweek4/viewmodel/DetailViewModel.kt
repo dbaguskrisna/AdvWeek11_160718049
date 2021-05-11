@@ -40,8 +40,6 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
                 })
         stringReqeust.tag = TAG
         queue?.add(stringReqeust)
-
-
     }
     override fun onCleared() {
         super.onCleared()
