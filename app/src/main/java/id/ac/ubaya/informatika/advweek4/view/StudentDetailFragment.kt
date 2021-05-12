@@ -47,7 +47,6 @@ class StudentDetailFragment : Fragment(),ButtonUpdateClickListener {
 
         dataBinding = DataBindingUtil.inflate<FragmentStudentDetailBinding>(inflater,R.layout.fragment_student_detail, container, false)
         return dataBinding.root
-
     }
 
 
